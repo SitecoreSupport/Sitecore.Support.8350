@@ -6,10 +6,11 @@
     {
         public override void Process(HttpRequestArgs args)
         {
-            if (args.Context.Request.UrlReferrer == null || !args.Context.Request.UrlReferrer.Query.Contains("xmlcontrol=")) // don't change cookies if the request comes from an XML control
-            {
-                base.Process(args);
-            }
+          if (!args.Context.Response.HeadersWritten)
+           {
+            base.Process(args);
+           }
+
         }
     }
 }
